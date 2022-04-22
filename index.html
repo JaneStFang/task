@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="農村地方特色小吃介紹網站">
+  <meta name="keywords" content="農村特色小吃">
+  <link rel="stylesheet" href="./style/reset.css">
+  <link rel="stylesheet" href="./style/main.css">
+  <title>農村特色小吃</title>
+</head>
+<body>
+  <div id="Load" class="load">
+    <img class="load__img" width="200" height="200" src="./img/loading.gif">
+  </div>
+  <header class="header">
+    <h1 class="header__title">農村地方美食小吃特色料理</h1>
+  </header>
+  <main class="main container mx-center">
+    <div class="main__head">
+      <div class="display">
+        <div class="display__head">
+          <div class="display__titlecntr">
+            <p class="display__title display__title--num">編號</p>
+            <p class="display__title display__title--location">行政區</p>
+            <p class="display__title display__title--pic">圖片</p>
+            <p class="display__title display__title--name">名稱</p>
+            <p class="display__title display__title--desc">介紹</p>
+          </div>
+        </div>
+        <div id="FoodCntr" class="display__body">
+        </div>
+      </div>
+      <ul id="PageCntr" class="page">
+      </ul>
+    </div>
+  </main>
+  <script src="./js/main.js"></script>
+</body>
+</html>

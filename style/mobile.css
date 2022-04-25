@@ -1,0 +1,135 @@
+@media screen and (max-width: 414px) and (min-width: 376px) {
+  body {
+    background-color: #fff;
+  }
+  
+  .header__title {
+    font-size: 30px;
+  }
+
+  .main {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .select {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 9px;
+    margin-bottom: 9px;
+  }
+
+  .display .resturant {
+    width: 100%;
+  }
+
+  .resturant {
+    height: 212px;
+  }
+
+  .resturant__textcntr {
+    height: 50%;
+  }
+
+  /* 效果 */
+  .resturant__item:hover .resturant__textcntr {
+    height: 91%;
+  }
+}
+
+@media screen and (max-width: 375px) and (min-width: 361px){
+  body {
+    background-color: #fff;
+  }
+
+  .header__title {
+    font-size: 28px;
+  }
+  
+  .main {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .select {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 9px;
+    margin-bottom: 9px;
+  }
+
+  .display .resturant {
+    width: 100%;
+  }
+
+  .resturant {
+    height: 212px;
+  }
+
+  .resturant__textcntr {
+    height: 46%;
+  }
+
+  .resturant__location {
+    font-size: 14px;
+  }
+
+  .resturant__name {
+    font-size: 16px;
+  }
+
+  /* 效果 */
+  .resturant__item:hover .resturant__textcntr {
+    height: 88%;
+  }
+}
+
+@media screen and (max-width: 360px){
+  body {
+    background-color: #fff;
+  }
+
+  .header__title {
+    font-size: 20px;
+  }
+  
+  .main {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .select {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 9px;
+    margin-bottom: 9px;
+  }
+
+  .display .resturant {
+    width: 100%;
+  }
+
+  .resturant {
+    height: 212px;
+  }
+
+  .resturant__textcntr {
+    height: 46%;
+  }
+
+  .resturant__location {
+    font-size: 14px;
+  }
+
+  .resturant__name {
+    font-size: 16px;
+  }
+
+  /* 效果 */
+  .resturant__item:hover .resturant__textcntr {
+    height: 88%;
+  }
+}

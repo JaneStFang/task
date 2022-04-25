@@ -1,0 +1,181 @@
+.mx-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.fix-clear::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.mask {
+  height: 100%;
+  overflow: hidden;
+}
+
+.container {
+  max-width: 1200px;
+}
+
+body {
+  font-family: Arial, Helvetica, "微軟正黑體", sans-serif;
+  background-color: #eee;
+}
+
+.load {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .6);
+  z-index: 999;
+}
+
+.header__title {
+  margin-top: 0;
+  margin-bottom: 0;
+  line-height: 3;
+  text-align: center;
+  color: #646767;
+}
+
+.selectCntr {
+  text-align: center;
+  background-color: #fff;
+}
+
+.select {
+  margin: 18px;
+  padding: 8px;
+  width: 25%;
+  border: none;
+  outline: none;
+  background-color: #eee;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 5px;
+  border: 1px solid #dfdfdf;
+  border-radius: 2px;
+}
+
+.select__item {
+  background-color: #fff;
+}
+
+.select__item--title {
+  color: #99969e;
+}
+
+.select option {
+  width: 30px;
+}
+
+.display {
+  margin-left: -16px;
+  margin-right: -16px;
+}
+
+.display .resturant {
+  width: 33.3%;
+}
+
+.resturant {
+  float: left;
+  padding: 16px;
+  box-sizing: border-box;
+  height: 232px;
+  color: #fff;
+}
+
+.resturant__item {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+}
+
+.resturant__item::before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, .1), 
+  rgba(0, 0, 0, .3));
+}
+
+.resturant__img {
+  width: 100%;
+  object-fit: cover;
+  vertical-align: bottom;
+  transition: all .5s;
+}
+
+.resturant__city {
+  position: absolute;
+  top: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 5px;
+  background-color: #DC9400;
+  font-size: 12px;
+}
+
+.resturant__textcntr {
+  position: absolute;
+  bottom: 0;
+  height: 45%;
+  padding: 16px;
+  box-sizing: border-box;
+  transition: all .5s;
+  pointer-events: none;
+}
+
+.resturant__link {
+  color: #fff;
+}
+
+.resturant__location {
+  margin-bottom: 0;
+  font-style: italic;
+  color: #ddd;
+  line-height: 1.5;
+}
+
+.resturant__name {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 18px;
+  border-bottom: 3px solid #fff;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.footer {
+  text-align: center;
+  color: #99969e;
+}
+
+.footer__name {
+  margin-bottom: 0;
+}
+
+.footer__link {
+  margin-top: 0;
+  color: #5e6a6b;
+}
+
+/* 效果 */
+.resturant__item:hover .resturant__img{
+  transform: scale(1.05);
+}
+
+.resturant__item:hover .resturant__textcntr {
+  height: 83%;
+}

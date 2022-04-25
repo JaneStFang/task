@@ -8,6 +8,7 @@
   <meta name="keywords" content="農村特色小吃">
   <link rel="stylesheet" href="./style/reset.css">
   <link rel="stylesheet" href="./style/main.css">
+  <link rel="stylesheet" media="screen and (max-width: 414px)" href="./style/mobile.css" />
   <title>農村特色小吃</title>
 </head>
 <body>
@@ -17,25 +18,24 @@
   <header class="header">
     <h1 class="header__title">農村地方美食小吃特色料理</h1>
   </header>
-  <main class="main container mx-center">
-    <div class="main__head">
-      <div class="display">
-        <div class="display__head">
-          <div class="display__titlecntr">
-            <p class="display__title display__title--num">編號</p>
-            <p class="display__title display__title--location">行政區</p>
-            <p class="display__title display__title--pic">圖片</p>
-            <p class="display__title display__title--name">名稱</p>
-            <p class="display__title display__title--desc">介紹</p>
-          </div>
-        </div>
-        <div id="FoodCntr" class="display__body">
-        </div>
+  <main id="Main" class="main">
+    <div class="main__head container mx-center">
+      <div id="SelectCntr" class="selectCntr">
+        <select id="SelectCity" class="select select-city">
+        </select>
+        <select id="SelectTown" class="select select-town">
+        </select>
       </div>
-      <ul id="PageCntr" class="page">
-      </ul>
+      <div id="Display" class="display fix-clear">
+      </div>
     </div>
   </main>
+  <footer class="footer">
+    <div class="footer__text">
+      <p class="footer__name">政府資料開放平台</p>
+      <a class="footer__link" href="https://data.gov.tw/dataset/6037">https://data.gov.tw/dataset/6037</a>
+    </div>
+  </footer>
   <script src="./js/main.js"></script>
 </body>
 </html>

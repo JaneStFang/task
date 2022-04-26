@@ -12,6 +12,10 @@
     padding-left: 16px;
   }
 
+  .selectCntr {
+    margin-bottom: 0;
+  }
+
   .select {
     width: 100%;
     margin-left: 0;
@@ -25,6 +29,8 @@
   }
 
   .resturant {
+    padding-top: 8px;
+    padding-bottom: 8px;
     height: 212px;
   }
 
@@ -52,6 +58,10 @@
     padding-left: 16px;
   }
 
+  .selectCntr {
+    margin-bottom: 0;
+  }
+
   .select {
     width: 100%;
     margin-left: 0;
@@ -65,6 +75,8 @@
   }
 
   .resturant {
+    padding-top: 8px;
+    padding-bottom: 8px;
     height: 212px;
   }
 
@@ -94,6 +106,10 @@
   .header__title {
     font-size: 20px;
   }
+
+  .selectCntr {
+    margin-bottom: 0;
+  }
   
   .main {
     padding-right: 16px;
@@ -113,6 +129,8 @@
   }
 
   .resturant {
+    padding-top: 8px;
+    padding-bottom: 8px;
     height: 212px;
   }
 

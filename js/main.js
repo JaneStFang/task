@@ -65,7 +65,8 @@ function makeArrByCityArr(originalArr, currentCity='', arr=[{
   return arr;
 }
 
-function render(dinnerObj = { dataArr: dinnerInfoArr, townArr: dinnerInfoByCityArr[0].townArr}) {
+function render(dinnerObj = { dataArr: dinnerInfoArr, 
+  townArr: dinnerInfoByCityArr[cityIndexInt].townArr}) {
   if (!isInitialization) {
     elemSelectCity.innerHTML = makeStr(makeCityTempStr, dinnerInfoByCityArr);
   } 
@@ -105,7 +106,7 @@ function makeResturantTempStr(item) {
           </div>
         </figure>
       ${item.Url ? "</a>" : ''}
-  </section>
+    </section>
   `;
 }
 
@@ -148,9 +149,6 @@ function changeSelect(e, targetObj = {}) {
   } else {
     targetObj.dataArr = dinnerInfoByCityArr[cityIndexInt].dataArr
     .filter(item => item.Town === targetValue);
-    if (targetObj.dataArr.length === 0) {
-      targetObj.dataArr = dinnerInfoByCityArr[cityIndexInt].dataArr;
-    }
     targetObj.townName = targetValue;
   }
   render(targetObj);

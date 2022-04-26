@@ -14,7 +14,7 @@ let cityIndexInt = 0;
 async function setInit() {
   dinnerInfoArr = await getDataByApi(foodsURL);
   handleData();
-  render();
+  render(dinnerInfoByCityArr[0]);
   removeLoad();
   setEvent();
   isInitialization = true;
@@ -44,6 +44,7 @@ function handleData() {
 function makeArrByCityArr(originalArr, currentCity='', arr=[{
   city: '請選擇行政區域',
   townArr: ["請選擇鄉政區"],
+  dataArr: originalArr,
 }]) {
   originalArr.forEach(item => {
     if (currentCity !== item.City) {
@@ -65,14 +66,13 @@ function makeArrByCityArr(originalArr, currentCity='', arr=[{
   return arr;
 }
 
-function render(dinnerObj = { dataArr: dinnerInfoArr, 
-  townArr: dinnerInfoByCityArr[cityIndexInt].townArr}) {
+function render(dinnerObj = {}) {
   if (!isInitialization) {
     elemSelectCity.innerHTML = makeStr(makeCityTempStr, dinnerInfoByCityArr);
   } 
   if (!isTownClicked) {
     elemSelectTown.innerHTML = makeStr(makeTownTempStr, 
-    dinnerObj.townArr );
+    dinnerObj.townArr);
     isTownClicked = true;
   }
   elemSelectTown.value = dinnerObj.townName || "請選擇鄉政區";
@@ -139,12 +139,8 @@ function changeSelect(e, targetObj = {}) {
   const elemTarget = e.target;
   const targetValue = elemTarget.value;
   if (elemTarget === elemSelectCity) {
-    targetObj = dinnerInfoByCityArr.find((item, index) => {
-      if (item.city === targetValue) {
-        cityIndexInt = index;
-        return item;
-      }
-    });
+    targetObj = dinnerInfoByCityArr.find(item => item.city === targetValue);
+    cityIndexInt = dinnerInfoByCityArr.indexOf(targetObj);
     isTownClicked = false;
   } else {
     targetObj.dataArr = dinnerInfoByCityArr[cityIndexInt].dataArr

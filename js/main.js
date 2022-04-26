@@ -5,19 +5,19 @@ const elemSelectCity = elemSelectCntr.querySelector('#SelectCity');
 const elemSelectTown = elemSelectCntr.querySelector('#SelectTown');
 const elemDisplay = elemMain.querySelector('#Display');
 const foodsURL = 'https://data.coa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx';
-let isinitialization = false;
+let isInitialization = false;
 let isTownClicked = false;
-let foodByCityArr;
-let allFoodArr;
-let cityIndex = 0;
+let dinnerInfoByCityArr;
+let dinnerInfoArr;
+let cityIndexInt = 0;
 
 async function setInit() {
-  allFoodArr = await getDataByApi(foodsURL);
+  dinnerInfoArr = await getDataByApi(foodsURL);
   handleData();
   render();
   removeLoad();
   setEvent();
-  isinitialization = true;
+  isInitialization = true;
 }
 
 async function getDataByApi(URL) {
@@ -28,23 +28,31 @@ async function getDataByApi(URL) {
   }
 }
 
+/**
+ * @description 在渲染畫面前先整理資料
+ */
 function handleData() {
-  foodByCityArr = makeArrByCityArr(allFoodArr);
+  dinnerInfoByCityArr = makeArrByCityArr(dinnerInfoArr);
 }
 
-function makeArrByCityArr(sampleArr, city='', arr=[{
+/**
+ * @description 將拿到的原始arr以city的種類來進行分類並且回傳先的arr
+ * @param {Array} originalArr
+ * @param {String} currentCity
+ * @param {Array} arr
+ */
+function makeArrByCityArr(originalArr, currentCity='', arr=[{
   city: '請選擇行政區域',
   townArr: ["請選擇鄉政區"],
 }]) {
-  sampleArr.forEach(item => {
-    if (city !== item.City) {
-      const innerObj = {
+  originalArr.forEach(item => {
+    if (currentCity !== item.City) {
+      arr.push({
         city: item.City,
         townArr: ["請選擇鄉政區", item.Town],
         dataArr: [item],
-      }
-      arr.push(innerObj);
-      city = item.City;
+      });
+      currentCity = item.City;
     } else {
       const lastIndexObj = arr[arr.length - 1];
       if(!lastIndexObj.townArr.includes(item.Town)) {
@@ -57,17 +65,17 @@ function makeArrByCityArr(sampleArr, city='', arr=[{
   return arr;
 }
 
-function render(foodObj = { dataArr: allFoodArr, }) {
-  if (!isinitialization) {
-    elemSelectCity.innerHTML = makeStr(makeCityTempStr, foodByCityArr);
+function render(dinnerObj = { dataArr: dinnerInfoArr, townArr: dinnerInfoByCityArr[0].townArr}) {
+  if (!isInitialization) {
+    elemSelectCity.innerHTML = makeStr(makeCityTempStr, dinnerInfoByCityArr);
   } 
   if (!isTownClicked) {
     elemSelectTown.innerHTML = makeStr(makeTownTempStr, 
-    foodObj.townArr || foodByCityArr[cityIndex].townArr);
+    dinnerObj.townArr );
     isTownClicked = true;
   }
-  elemSelectTown.value = foodObj.townName || "請選擇鄉政區";
-  elemDisplay.innerHTML = makeStr(makeResturantTempStr, foodObj.dataArr);
+  elemSelectTown.value = dinnerObj.townName || "請選擇鄉政區";
+  elemDisplay.innerHTML = makeStr(makeResturantTempStr, dinnerObj.dataArr);
 }
 
 function makeStr(tempCallBackFunc, dataArr, str='') {
@@ -103,14 +111,17 @@ function makeResturantTempStr(item) {
 
 function makeCityTempStr(item, index) {
   return `
-    <option ${index === 0 ? 'class="select__item select__item--title" disable':
-    'class="select__item"'} value="${item.city}">${item.city}</option>
+    <option ${index === 0 ? 
+      'class="select__item select__item--title" selected="true" disabled="disabled"' : 
+    'class="select__item"'}value="${item.city}">${item.city}</option>
   `;
 }
 
 function makeTownTempStr(item, index) {
   return `
-    <option class="select__item ${index === 0 ? 'select__item--title' : ''}" 
+    <option ${index === 0 ? 
+      'class="select__item select__item--title" selected="true" disabled="disabled"' : 
+    'class="select__item"'} 
     value="${item}">${item}</option>
   `;
 }
@@ -126,17 +137,20 @@ function setEvent() {
 function changeSelect(e, targetObj = {}) {
   const elemTarget = e.target;
   const targetValue = elemTarget.value;
-  if (elemTarget.nodeName !== 'SELECT') return;
   if (elemTarget === elemSelectCity) {
-    targetObj = foodByCityArr.find((item, index) => {
-      cityIndex = index;
-      return item.city === targetValue;
+    targetObj = dinnerInfoByCityArr.find((item, index) => {
+      if (item.city === targetValue) {
+        cityIndexInt = index;
+        return item;
+      }
     });
     isTownClicked = false;
   } else {
-    targetObj.dataArr = foodByCityArr[cityIndex].dataArr.filter(item => {
-      return item.Town === targetValue;
-    });
+    targetObj.dataArr = dinnerInfoByCityArr[cityIndexInt].dataArr
+    .filter(item => item.Town === targetValue);
+    if (targetObj.dataArr.length === 0) {
+      targetObj.dataArr = dinnerInfoByCityArr[cityIndexInt].dataArr;
+    }
     targetObj.townName = targetValue;
   }
   render(targetObj);
